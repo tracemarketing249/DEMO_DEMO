@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Demo — Trace AgTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amber:#FFC100;
+  --amber-h:#FFD44D;
+  --amber-dim:rgba(255,193,0,.10);
+  --amber-bdr:rgba(255,193,0,.20);
+  /* Trace site background: very dark warm-charcoal, NOT pure black */
+  --bg:#18191a;
+  --bg-mid:#1e2020;
+  --bg-card:#232525;
+  --bg-lift:#2a2c2c;
+  --text:#f2ede4;
+  --text-s:#9a9690;
+  --text-m:#585552;
+  --bdr:rgba(255,255,255,.07);
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:68px;background:rgba(24,25,26,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--bdr)}
+.nlogo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nbee{width:30px;height:30px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:15px}
+.nlogotxt{font-family:var(--font-d);font-size:21px;font-weight:600;color:var(--text);letter-spacing:.02em}
+.nlinks{display:flex;align-items:center;gap:26px}
+.nlinks a{color:var(--text-s);text-decoration:none;font-size:12.5px;font-weight:400;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.nlinks a:hover{color:var(--text)}
+.nacts{display:flex;align-items:center;gap:13px;position:relative}
+.langbtn{display:flex;align-items:center;gap:5px;background:none;border:1px solid var(--amber-bdr);color:var(--text-s);border-radius:4px;padding:6px 11px;font-size:11.5px;cursor:pointer;font-family:var(--font-b);letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.langbtn:hover{border-color:var(--amber);color:var(--amber)}
+.langdrop{position:absolute;top:46px;right:48px;background:var(--bg-card);border:1px solid var(--amber-bdr);border-radius:8px;padding:6px;min-width:128px;display:none;flex-direction:column;gap:2px;box-shadow:0 12px 32px rgba(0,0,0,.5)}
+.langdrop.open{display:flex}
+.langopt{padding:7px 11px;color:var(--text-s);font-size:12.5px;cursor:pointer;border-radius:4px;transition:all .15s}
+.langopt:hover{background:var(--amber-dim);color:var(--amber)}
+.ncta{background:var(--amber);color:#111;padding:8px 20px;border-radius:4px;font-size:12.5px;font-weight:500;text-decoration:none;letter-spacing:.02em;transition:all .2s}
+.ncta:hover{background:var(--amber-h)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:68px}
+.hleft{padding:68px 52px 60px 68px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-right:1px solid var(--bdr)}
+.wm{position:absolute;font-family:var(--font-d);font-size:260px;font-weight:600;color:rgba(255,193,0,.026);bottom:-36px;left:-16px;line-height:1;pointer-events:none;user-select:none;letter-spacing:-.04em}
+.itabs{display:flex;gap:0;margin-bottom:42px;border:1px solid var(--amber-bdr);border-radius:5px;overflow:hidden;width:fit-content}
+.itab{padding:7px 14px;background:none;border:none;cursor:pointer;color:var(--text-m);font-family:var(--font-b);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;transition:all .2s;border-right:1px solid var(--amber-bdr)}
+.itab:last-child{border-right:none}
+.itab.on{background:var(--amber-dim);color:var(--amber)}
+.itab:hover:not(.on){color:var(--text-s)}
+.ey{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:17px;display:flex;align-items:center;gap:11px}
+.ey::before{content:'';display:block;width:26px;height:1px;background:var(--amber)}
+.h1{font-family:var(--font-d);font-size:clamp(38px,4vw,60px);font-weight:300;line-height:1.08;letter-spacing:-.01em;margin-bottom:22px}
+.h1 em{font-style:italic;color:var(--amber)}
+.hp{color:var(--text-s);font-size:14px;line-height:1.85;max-width:390px;margin-bottom:38px}
+.hstats{display:flex;gap:34px}
+.sn{font-family:var(--font-d);font-size:36px;font-weight:600;color:var(--amber);line-height:1}
+.sl{font-size:10.5px;color:var(--text-m);text-transform:uppercase;letter-spacing:.07em;margin-top:3px}
+
+/* CHATBOT */
+.hright{padding:68px 52px 60px 52px;display:flex;flex-direction:column;justify-content:center;background:var(--bg-mid)}
+.fhd{margin-bottom:26px}
+.fhd h2{font-family:var(--font-d);font-size:25px;font-weight:300;line-height:1.2;margin-bottom:5px}
+.fhd p{color:var(--text-m);font-size:12.5px}
+.cwin{background:var(--bg-card);border:1px solid var(--amber-bdr);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:390px}
+.cbar{padding:11px 17px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:9px;background:rgba(255,193,0,.035)}
+.cav{width:29px;height:29px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cagent{font-size:12.5px;font-weight:500}
+.conline{font-size:10.5px;color:var(--text-m);display:flex;align-items:center;gap:5px;margin-top:1px}
+.conline::before{content:'';width:6px;height:6px;background:#4ade80;border-radius:50%}
+.cmsgs{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:13px;max-height:310px}
+.cm{display:flex;gap:8px;align-items:flex-start;animation:ms .27s ease}
+@keyframes ms{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.cm.u{flex-direction:row-reverse}
+.cmav{width:25px;height:25px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11.5px}
+.bot .cmav{background:var(--amber);color:#111}
+.u .cmav{background:var(--bg-lift);color:var(--text-s);font-size:10px}
+.bub{max-width:76%;padding:9px 13px;border-radius:9px;font-size:13px;line-height:1.6}
+.bot .bub{background:var(--bg-lift);border:1px solid var(--bdr);border-top-left-radius:3px;color:var(--text)}
+.u .bub{background:var(--amber-dim);border:1px solid var(--amber-bdr);border-top-right-radius:3px;color:var(--text);text-align:right}
+.cinp{padding:11px 13px;border-top:1px solid var(--bdr);display:flex;gap:8px;align-items:center}
+.ctxt{flex:1;background:var(--bg-lift);border:1px solid var(--bdr);border-radius:7px;padding:8px 12px;color:var(--text);font-family:var(--font-b);font-size:12.5px;outline:none;transition:border-color .2s}
+.ctxt::placeholder{color:var(--text-m)}
+.ctxt:focus{border-color:var(--amber)}
+.sbtn{width:34px;height:34px;background:var(--amber);border:none;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.sbtn:hover{background:var(--amber-h);transform:scale(1.06)}
+.tind{display:flex;gap:4px;padding:9px 13px;background:var(--bg-lift);border:1px solid var(--bdr);border-radius:9px;border-top-left-radius:3px;width:fit-content}
+.td{width:5px;height:5px;border-radius:50%;background:var(--text-m);animation:td 1.2s infinite}
+.td:nth-child(2){animation-delay:.2s}
+.td:nth-child(3){animation-delay:.4s}
+@keyframes td{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px);background:var(--amber)}}
+
+/* APP SECTION */
+.appsec{display:grid;grid-template-columns:1fr 1fr;min-height:660px;background:var(--bg-mid);border-top:1px solid var(--bdr)}
+.apleft{display:flex;align-items:center;justify-content:center;padding:68px 44px;position:relative}
+.pglow{position:absolute;width:320px;height:320px;background:radial-gradient(circle,rgba(255,193,0,.07) 0%,transparent 68%);border-radius:50%;pointer-events:none}
+.phone{width:222px;height:456px;background:var(--bg-card);border-radius:32px;border:1.5px solid rgba(255,193,0,.22);overflow:hidden;position:relative;flex-shrink:0;box-shadow:0 28px 56px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03)}
+.pnotch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:68px;height:21px;background:var(--bg-card);border-radius:0 0 11px 11px;z-index:2}
+.pscr{width:100%;height:100%;background:linear-gradient(180deg,#1d2020 0%,#191b1b 100%);display:flex;flex-direction:column;overflow:hidden}
+.phdr{padding:30px 13px 9px;border-bottom:1px solid rgba(255,255,255,.05);background:rgba(255,193,0,.033)}
+.ptop{display:flex;justify-content:space-between;align-items:flex-start}
+.pan{font-size:9.5px;font-weight:500;color:var(--amber);letter-spacing:.08em;text-transform:uppercase}
+.pgt{font-family:var(--font-d);font-size:14px;color:var(--text);font-weight:300;margin-top:2px}
+.ps{font-size:8.5px;color:var(--text-m);margin-top:1px}
+.pstats{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:9px 13px}
+.psc{background:var(--bg-lift);border:1px solid rgba(255,255,255,.04);border-radius:9px;padding:8px 10px}
+.psl{font-size:8px;color:var(--text-m);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.psv{font-family:var(--font-d);font-size:17px;font-weight:600;color:var(--amber)}
+.psc2{font-size:8px;color:#4ade80;margin-top:1px}
+.ptt{font-size:8.5px;color:var(--text-m);text-transform:uppercase;letter-spacing:.06em;padding:5px 13px 3px}
+.pr{display:flex;align-items:center;gap:8px;padding:6px 13px;border-bottom:1px solid rgba(255,255,255,.033)}
+.pd{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pfn{font-size:9.5px;color:var(--text)}
+.pfs{font-size:8px;color:var(--text-m)}
+.pbg{margin-left:auto;font-size:7.5px;padding:2px 5px;border-radius:20px;font-weight:500}
+.bg{background:rgba(74,222,128,.12);color:#4ade80}
+.ba{background:var(--amber-dim);color:var(--amber)}
+.pnav{margin-top:auto;display:flex;padding:8px 0;border-top:1px solid rgba(255,255,255,.05);background:rgba(20,22,22,.97)}
+.pni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.pnic{font-size:13px}
+.pnil{font-size:7px;color:var(--text-m)}
+.pni.act .pnil{color:var(--amber)}
+
+.apright{padding:68px 68px 68px 48px;display:flex;flex-direction:column;justify-content:center}
+.secy{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:17px;display:flex;align-items:center;gap:10px}
+.secy::before{content:'';width:20px;height:1px;background:var(--amber)}
+.sech2{font-family:var(--font-d);font-size:clamp(28px,2.8vw,44px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.sech2 em{font-style:italic;color:var(--amber)}
+.secp{color:var(--text-s);font-size:13.5px;line-height:1.85;max-width:360px;margin-bottom:34px}
+.feats{display:flex;flex-direction:column;gap:13px;margin-bottom:34px}
+.feat{display:flex;gap:11px;align-items:flex-start}
+.fdot{width:17px;height:17px;border-radius:50%;background:var(--amber-dim);border:1px solid var(--amber-bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
+.fdoti{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.ftxt{font-size:13px;color:var(--text-s);line-height:1.6}
+.ftxt strong{color:var(--text);font-weight:500}
+.sbtns{display:flex;gap:12px;flex-wrap:wrap}
+.sbtn2{display:flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--amber-bdr);border-radius:9px;background:var(--bg-card);color:var(--text);text-decoration:none;transition:all .2s;min-width:142px}
+.sbtn2:hover{border-color:var(--amber);background:var(--amber-dim)}
+.sico{font-size:20px}
+.stt{font-size:9px;color:var(--text-m);text-transform:uppercase;letter-spacing:.06em}
+.stn{font-size:13.5px;font-weight:500}
+
+/* PROCESS TIMELINE */
+.procsec{padding:108px 68px;background:var(--bg);position:relative;overflow:hidden;border-top:1px solid var(--bdr)}
+.procbg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 108%,rgba(255,193,0,.05) 0%,transparent 70%);pointer-events:none}
+.prochd{text-align:center;margin-bottom:76px}
+.proch2{font-family:var(--font-d);font-size:clamp(32px,3.6vw,52px);font-weight:300;line-height:1.1;margin-bottom:13px}
+.proch2 em{font-style:italic;color:var(--amber)}
+.procp{color:var(--text-m);max-width:440px;margin:0 auto;font-size:13px}
+
+/* spine + nodes */
+.tlw{position:relative;padding:56px 0 0}
+.spine{position:absolute;top:50%;left:0;right:0;height:1px;background:var(--bdr);transform:translateY(-50%)}
+.spinef{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--amber) 0%,rgba(255,193,0,.22) 100%);transition:width .85s cubic-bezier(.4,0,.2,1)}
+.tlns{display:flex;justify-content:space-between;position:relative}
+.tln{flex:1;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .25s}
+/* Alternating above/below — odd up, even down */
+.tln:nth-child(odd)  .tlntop{order:1;padding-bottom:18px;justify-content:flex-end;min-height:82px}
+.tln:nth-child(odd)  .tlndot{order:2}
+.tln:nth-child(odd)  .tlnbot{order:3;padding-top:14px;justify-content:flex-start;min-height:82px}
+.tln:nth-child(even) .tlntop{order:3;padding-top:14px;justify-content:flex-start;min-height:82px}
+.tln:nth-child(even) .tlndot{order:2}
+.tln:nth-child(even) .tlnbot{order:1;padding-bottom:18px;justify-content:flex-end;min-height:82px}
+.tlntop,.tlnbot{display:flex;flex-direction:column;align-items:center}
+.tlnnum{font-family:var(--font-d);font-size:10.5px;font-weight:600;color:var(--text-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;transition:color .3s}
+.tlnlbl{font-size:10.5px;color:var(--text-m);text-align:center;max-width:84px;line-height:1.35;transition:color .3s}
+.tln.act .tlnnum{color:var(--amber)}
+.tln.act .tlnlbl{color:var(--text-s)}
+.tlndot{width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--text-m);transition:all .3s;position:relative;z-index:3;flex-shrink:0}
+.tln.act .tlndot{background:var(--amber);border-color:var(--amber);box-shadow:0 0 0 7px rgba(255,193,0,.11);transform:scale(1.18)}
+
+/* editorial display panel — the "1995" style reference */
+.tldp{
+  margin-top:52px;
+  display:grid;grid-template-columns:160px 1fr;
+  background:var(--bg-card);border:1px solid var(--amber-bdr);
+  border-radius:13px;overflow:hidden;
+}
+.tlbig{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--amber-dim);border-right:1px solid var(--amber-bdr);
+  padding:36px 20px;
+}
+.tlbig span{
+  font-family:var(--font-d);font-size:88px;font-weight:300;
+  color:var(--amber);opacity:.5;line-height:1;letter-spacing:-.03em;
+}
+.tldb{padding:32px 40px}
+.tlds{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:9px}
+.tldt{font-family:var(--font-d);font-size:26px;font-weight:300;margin-bottom:11px;line-height:1.2}
+.tldd{color:var(--text-s);font-size:13.5px;line-height:1.85}
+.tltags{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
+.tltag{font-size:10.5px;color:var(--amber);border:1px solid var(--amber-bdr);border-radius:20px;padding:3px 10px;background:var(--amber-dim)}
+
+/* CLIENTS */
+.clsec{padding:108px 68px;background:var(--bg-mid);border-top:1px solid var(--bdr)}
+.clhd{margin-bottom:56px}
+.clh2{font-family:var(--font-d);font-size:clamp(30px,3.2vw,48px);font-weight:300;line-height:1.1;margin-bottom:13px}
+.clh2 em{font-style:italic;color:var(--amber)}
+.clp{color:var(--text-m);font-size:13px;max-width:420px}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.tile{background:var(--bg-card);border:1px solid var(--bdr);padding:26px 22px;display:flex;flex-direction:column;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.tile::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.tile:hover::after{transform:scaleX(1)}
+.tile:hover{background:var(--bg-lift)}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tflg{font-size:24px;margin-bottom:9px}
+.tnm{font-family:var(--font-d);font-size:18px;font-weight:300;margin-bottom:4px;line-height:1.1}
+.tile.big .tnm{font-size:24px}
+.tco{font-size:10px;color:var(--text-m);text-transform:uppercase;letter-spacing:.08em;margin-bottom:13px}
+.tcrp{font-size:10.5px;color:var(--amber);border:1px solid var(--amber-bdr);border-radius:20px;padding:3px 10px;width:fit-content;margin-bottom:9px}
+.tdsc{font-size:12px;color:var(--text-s);line-height:1.65;display:none}
+.tile.big .tdsc{display:block}
+.statsrow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px}
+.stile{background:var(--amber-dim);border:1px solid var(--amber-bdr);padding:20px 24px;text-align:center}
+.stn2{font-family:var(--font-d);font-size:36px;font-weight:300;color:var(--amber);line-height:1;margin-bottom:5px}
+.slb{font-size:10.5px;color:var(--text-m);text-transform:uppercase;letter-spacing:.06em}
+
+/* TESTIMONIALS */
+.tsec{padding:108px 68px;background:var(--bg);border-top:1px solid var(--bdr);position:relative}
+.tsbg{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 35% at 50% 0%,rgba(255,193,0,.04) 0%,transparent 55%);pointer-events:none}
+.tshd{text-align:center;margin-bottom:68px}
+.tsh2{font-family:var(--font-d);font-size:clamp(30px,3.2vw,48px);font-weight:300;line-height:1.1;margin-bottom:13px}
+.tsh2 em{font-style:italic;color:var(--amber)}
+.tsgr{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tcard{background:var(--bg-card);border:1px solid var(--bdr);padding:34px 30px;display:flex;flex-direction:column;gap:20px;transition:all .3s;position:relative}
+.tcard:hover{background:var(--bg-lift);border-color:var(--amber-bdr)}
+.tcard.feat{background:var(--amber-dim);border-color:var(--amber-bdr)}
+.qm{font-family:var(--font-d);font-size:68px;font-weight:600;color:rgba(255,193,0,.13);line-height:.5;margin-bottom:-16px}
+.tcard.feat .qm{color:rgba(255,193,0,.26)}
+.ttxt{font-family:var(--font-d);font-size:16px;font-weight:300;line-height:1.75;font-style:italic;color:var(--text);flex:1}
+.tper{display:flex;align-items:center;gap:12px;padding-top:17px;border-top:1px solid var(--bdr)}
+.tav{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:16px;font-weight:300;flex-shrink:0}
+.av1{background:rgba(255,193,0,.11);color:var(--amber);border:1px solid var(--amber-bdr)}
+.av2{background:rgba(74,222,128,.09);color:#4ade80;border:1px solid rgba(74,222,128,.17)}
+.av3{background:rgba(100,160,255,.09);color:#6ab4ff;border:1px solid rgba(100,160,255,.17)}
+.tnm2{font-size:13px;font-weight:500;margin-bottom:2px}
+.trl{font-size:11px;color:var(--text-m)}
+.tcn{font-size:11px;color:var(--amber)}
+.stars{display:flex;gap:2px;margin-top:3px}
+.star{color:var(--amber);font-size:10.5px}
+
+/* CTA */
+.ctasec{padding:92px 68px;background:var(--bg-mid);border-top:1px solid var(--bdr);display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+.ctah2{font-family:var(--font-d);font-size:clamp(28px,3vw,48px);font-weight:300;line-height:1.1;margin-bottom:13px}
+.ctah2 em{font-style:italic;color:var(--amber)}
+.ctap{color:var(--text-m);max-width:420px;font-size:13px;line-height:1.85}
+.ctaacts{display:flex;flex-direction:column;gap:13px;align-items:center}
+.ctabtn{background:var(--amber);color:#111;padding:15px 46px;border-radius:4px;border:none;font-family:var(--font-b);font-size:13px;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block}
+.ctabtn:hover{background:var(--amber-h);transform:translateY(-2px)}
+.ctact{font-size:11.5px;color:var(--text-m);text-align:center}
+.ctact a{color:var(--amber);text-decoration:none}
+
+/* FOOTER */
+footer{padding:34px 68px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
+.flogo{font-family:var(--font-d);font-size:18px;font-weight:300;color:var(--text-m)}
+.flinks{display:flex;gap:20px}
+.flinks a{color:var(--text-m);text-decoration:none;font-size:11.5px;transition:color .2s}
+.flinks a:hover{color:var(--amber)}
+.fcp{font-size:11.5px;color:var(--text-m)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://traceagtech.com" class="nlogo">
+    <div class="nbee">🐝</div>
+    <span class="nlogotxt">Trace</span>
+  </a>
+  <div class="nlinks">
+    <a href="https://traceagtech.com/why-trace/">Why Trace</a>
+    <a href="#">Explore</a>
+    <a href="https://traceagtech.com/blog/">Blog</a>
+    <a href="https://traceagtech.com/case_study/">Case Studies</a>
+    <a href="https://traceagtech.com/contact/">Contact Us</a>
+  </div>
+  <div class="nacts">
+    <button class="langbtn" onclick="toggleLang(event)">🌐 EN ▾</button>
+    <div class="langdrop" id="ld">
+      <div class="langopt" onclick="setLang('EN','🇬🇧')">🇬🇧 English</div>
+      <div class="langopt" onclick="setLang('AR','🇦🇪')">🇦🇪 العربية</div>
+      <div class="langopt" onclick="setLang('FR','🇫🇷')">🇫🇷 Français</div>
+      <div class="langopt" onclick="setLang('ES','🇪🇸')">🇪🇸 Español</div>
+      <div class="langopt" onclick="setLang('HI','🇮🇳')">🇮🇳 हिन्दी</div>
+    </div>
+    <a href="#demo" class="ncta">Get Demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="demo">
+  <div class="hleft">
+    <div class="wm">TRACE</div>
+    <div class="itabs">
+      <button class="itab on" onclick="setInd('perfumery',this)">Perfumery</button>
+      <button class="itab" onclick="setInd('coffee',this)">Coffee</button>
+      <button class="itab" onclick="setInd('spices',this)">Spices</button>
+      <button class="itab" onclick="setInd('floral',this)">Floral</button>
+      <button class="itab" onclick="setInd('meat',this)">Livestock</button>
+    </div>
+    <div class="ey" id="heyebrow">Perfumery Traceability</div>
+    <h1 class="h1" id="hh1">Where every <em>drop</em><br>tells its origin story.</h1>
+    <p class="hp" id="hhp">From lavender fields in Grasse to the vial on your shelf — Trace ensures every botanical source is verified, every distillation batch is logged, and every fragrance ingredient meets compliance at origin. Because authenticity in perfumery isn't a claim — it's a chain of custody.</p>
+    <div class="hstats">
+      <div><div class="sn">6</div><div class="sl">Industry verticals</div></div>
+      <div><div class="sn">40+</div><div class="sl">Enterprise clients</div></div>
+      <div><div class="sn">12</div><div class="sl">Countries active</div></div>
+    </div>
+  </div>
+  <div class="hright">
+    <div class="fhd">
+      <h2>Let's get you started</h2>
+      <p>Our assistant will gather your details — takes under 2 minutes.</p>
+    </div>
+    <div class="cwin">
+      <div class="cbar">
+        <div class="cav">🐝</div>
+        <div>
+          <div class="cagent">Trace Assistant</div>
+          <div class="conline">Online now</div>
+        </div>
+      </div>
+      <div class="cmsgs" id="cm"></div>
+      <div class="cinp">
+        <input type="text" class="ctxt" id="ci" placeholder="Type your reply..." onkeydown="hk(event)"/>
+        <button class="sbtn" onclick="sm()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="appsec rv">
+  <div class="apleft">
+    <div class="pglow"></div>
+    <div class="phone">
+      <div class="pnotch"></div>
+      <div class="pscr">
+        <div class="phdr">
+          <div class="ptop">
+            <div>
+              <div class="pan">Trace AgTech</div>
+              <div class="pgt">Good morning, Rajan</div>
+              <div class="ps">3 farms need attention today</div>
+            </div>
+            <div style="font-size:19px">🐝</div>
+          </div>
+        </div>
+        <div class="pstats">
+          <div class="psc"><div class="psl">Active Farms</div><div class="psv">247</div><div class="psc2">↑ 12 this month</div></div>
+          <div class="psc"><div class="psl">Compliance</div><div class="psv">94%</div><div class="psc2" style="color:var(--amber)">2 pending</div></div>
+        </div>
+        <div class="ptt">Recent Activity</div>
+        <div class="pr"><div class="pd" style="background:#4ade80"></div><div><div class="pfn">Nilgiris Block A</div><div class="pfs">Tea · Field visit logged</div></div><div class="pbg bg">Done</div></div>
+        <div class="pr"><div class="pd" style="background:var(--amber)"></div><div><div class="pfn">Wayanad Estate</div><div class="pfs">Coffee · PoP due today</div></div><div class="pbg ba">Pending</div></div>
+        <div class="pr"><div class="pd" style="background:#4ade80"></div><div><div class="pfn">Kumily Plot 3</div><div class="pfs">Spices · Harvest forecast</div></div><div class="pbg bg">On track</div></div>
+        <div class="pr"><div class="pd" style="background:#6ab4ff"></div><div><div class="pfn">Ooty Floriculture</div><div class="pfs">Flowers · New batch added</div></div><div class="pbg bg">Active</div></div>
+        <div class="pnav">
+          <div class="pni act"><div class="pnic" style="color:var(--amber)">🏠</div><div class="pnil">Home</div></div>
+          <div class="pni"><div class="pnic">🌾</div><div class="pnil">Farms</div></div>
+          <div class="pni"><div class="pnic">📊</div><div class="pnil">Analytics</div></div>
+          <div class="pni"><div class="pnic">👤</div><div class="pnil">Profile</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="apright">
+    <div class="secy">Mobile Platform</div>
+    <h2 class="sech2">Your farms,<br><em>in your pocket.</em></h2>
+    <div class="feats">
+      <div class="feat"><div class="fdot"><div class="fdoti"></div></div><div class="ftxt"><strong>Geo-tagged field visits</strong> — Log farm activities with GPS precision, even offline in remote areas.</div></div>
+      <div class="feat"><div class="fdot"><div class="fdoti"></div></div><div class="ftxt"><strong>Package of Practice (PoP)</strong> — Deliver farm advisory and compliance checklists directly to farmers' devices.</div></div>
+      <div class="feat"><div class="fdot"><div class="fdoti"></div></div><div class="ftxt"><strong>Real-time traceability</strong> — QR-scan any batch from harvest to export with a full digital audit trail.</div></div>
+    </div>
+    <p class="secp">The Trace mobile app connects agribusiness managers with their contract farmers — giving field teams the tools they need and giving you the visibility you demand.</p>
+    <div class="sbtns">
+      <a href="#" class="sbtn2"><div class="sico">🍎</div><div><div class="stt">Download on the</div><div class="stn">App Store</div></div></a>
+      <a href="#" class="sbtn2"><div class="sico">▶️</div><div><div class="stt">Get it on</div><div class="stn">Google Play</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS TIMELINE -->
+<section class="procsec rv">
+  <div class="procbg"></div>
+  <div class="prochd">
+    <div class="secy" style="justify-content:center;margin-bottom:13px;">Client Journey</div>
+    <h2 class="proch2">From intake to <em>live deployment.</em></h2>
+    <p class="procp">A structured, proven process — every client goes from first call to full deployment in weeks, not months.</p>
+  </div>
+  <div class="tlw">
+    <div class="spine"><div class="spinef" id="sf" style="width:0%"></div></div>
+    <div class="tlns" id="tln"></div>
+  </div>
+  <div class="tldp" id="tldp">
+    <div class="tlbig"><span id="tlnum">01</span></div>
+    <div class="tldb">
+      <div class="tlds" id="tls">Stage</div>
+      <div class="tldt" id="tlti">Select a stage</div>
+      <div class="tldd" id="tlde">Click any stage on the timeline above to explore what happens at each step of your client onboarding journey.</div>
+      <div class="tltags" id="tltg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clsec rv">
+  <div class="clhd">
+    <div class="secy">Global Client Base</div>
+    <h2 class="clh2">Trusted across<br><em>12 countries.</em></h2>
+    <p class="clp">From specialty coffee exporters to large plantation companies — Trace serves the full spectrum of agribusiness.</p>
+  </div>
+  <div class="mosaic">
+    <div class="tile big"><div class="tflg">🇮🇳</div><div class="tnm">Vyoman India Private Ltd.</div><div class="tco">India · Karnataka</div><div class="tcrp">Coffee & Arecanut</div><div class="tdsc">One of South India's leading coffee and arecanut exporters, Vyoman uses Trace to manage thousands of contract farmers across hilly estates, delivering full digital traceability to European buyers.</div></div>
+    <div class="tile"><div class="tflg">🇪🇹</div><div class="tnm">Harar Export Co.</div><div class="tco">Ethiopia</div><div class="tcrp">Specialty Coffee</div></div>
+    <div class="tile"><div class="tflg">🇲🇾</div><div class="tnm">GreenPalm Estates</div><div class="tco">Malaysia</div><div class="tcrp">Palm Oil</div></div>
+    <div class="tile"><div class="tflg">🇿🇦</div><div class="tnm">Cape Bloom Growers</div><div class="tco">South Africa</div><div class="tcrp">Floriculture</div></div>
+    <div class="tile"><div class="tflg">🇻🇳</div><div class="tnm">Mekong Spice Corp.</div><div class="tco">Vietnam</div><div class="tcrp">Black Pepper</div></div>
+    <div class="tile"><div class="tflg">🇪🇨</div><div class="tnm">AquaTrace Ecuador</div><div class="tco">Ecuador</div><div class="tcrp">Shrimp Aquaculture</div></div>
+  </div>
+  <div class="statsrow">
+    <div class="stile"><div class="stn2">40+</div><div class="slb">Enterprise Clients</div></div>
+    <div class="stile"><div class="stn2">12</div><div class="slb">Countries</div></div>
+    <div class="stile"><div class="stn2">50K+</div><div class="slb">Farmers on Platform</div></div>
+    <div class="stile"><div class="stn2">6</div><div class="slb">Industry Verticals</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="tsec rv">
+  <div class="tsbg"></div>
+  <div class="tshd">
+    <div class="secy" style="justify-content:center;margin-bottom:13px;">What clients say</div>
+    <h2 class="tsh2">Proof in the <em>field.</em></h2>
+  </div>
+  <div class="tsgr">
+    <div class="tcard feat">
+      <div class="qm">"</div>
+      <div class="ttxt">Trace transformed how we manage our 2,400 contract farmers. What used to take weeks of paper reconciliation now happens in real-time. Our European buyers finally trust the chain of custody we provide.</div>
+      <div class="tper"><div class="tav av1">R</div><div><div class="tnm2">Rajesh Menon</div><div class="trl">Supply Chain Director</div><div class="tcn">Vyoman India Pvt. Ltd.</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="qm">"</div>
+      <div class="ttxt">The geo-tagging feature alone saved us from a major compliance issue. Our GAP audit was the smoothest we've ever done — every data point was already in the system.</div>
+      <div class="tper"><div class="tav av2">A</div><div><div class="tnm2">Amara Girma</div><div class="trl">Operations Manager</div><div class="tcn">Harar Export Co., Ethiopia</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="qm">"</div>
+      <div class="ttxt">As a floral exporter, freshness tracking is everything. Trace's batch-level traceability lets us guarantee delivery windows to European supermarkets with data buyers actually believe.</div>
+      <div class="tper"><div class="tav av3">S</div><div><div class="tnm2">Sipho Dlamini</div><div class="trl">CEO</div><div class="tcn">Cape Bloom Growers, SA</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctasec rv">
+  <div>
+    <h2 class="ctah2">Ready to <em>trace</em> your<br>supply chain?</h2>
+    <p class="ctap">Join 40+ agribusinesses across 12 countries who use Trace to build trust from farm to market. Get a personalised demo within 24 hours.</p>
+  </div>
+  <div class="ctaacts">
+    <a href="#demo" class="ctabtn">Book Your Demo →</a>
+    <div class="ctact">Or call us at <a href="tel:+919895465695">+91 98954 65695</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">Trace AgTech © 2024</div>
+  <div class="flinks">
+    <a href="https://traceagtech.com/privacy-policy/">Privacy Policy</a>
+    <a href="https://www.linkedin.com/company/traceagtech">LinkedIn</a>
+    <a href="https://twitter.com/traceagtech">Twitter</a>
+    <a href="https://www.facebook.com/tracefarmmanagementsoftware">Facebook</a>
+  </div>
+  <div class="fcp">Farm intelligence. Field to fork.</div>
+</footer>
+
+<script>
+/* LANGUAGE */
+function toggleLang(e){e.stopPropagation();document.getElementById('ld').classList.toggle('open')}
+function setLang(c,f){document.querySelector('.langbtn').textContent=f+' '+c+' ▾';document.getElementById('ld').classList.remove('open')}
+document.addEventListener('click',()=>document.getElementById('ld').classList.remove('open'));
+
+/* INDUSTRY */
+const IND={
+  perfumery:{ey:'Perfumery Traceability',h1:'Where every <em>drop</em><br>tells its origin story.',p:"From lavender fields in Grasse to the vial on your shelf — Trace ensures every botanical source is verified, every distillation batch is logged, and every fragrance ingredient meets compliance at origin. Because authenticity in perfumery isn't a claim — it's a chain of custody."},
+  coffee:{ey:'Coffee Traceability',h1:'From <em>cherry</em> to cup,<br>fully verified.',p:"Trace connects wet mills, dry mills, and exporters to every farm that supplies them. Give roasters and importers single-origin proof they can trust — lot-level traceability, cupping records, and GAP compliance in one platform."},
+  spices:{ey:'Spice Chain Traceability',h1:'Every <em>root</em> known,<br>every batch assured.',p:"Verify the provenance of your pepper, cardamom, or turmeric down to the grower plot. Trace enables FSSAI, EU, and USDA export compliance documentation — fully digital, fully audit-ready."},
+  floral:{ey:'Floriculture Traceability',h1:'Freshness has a<br><em>digital</em> trail.',p:"Track farm-to-vase in hours, not days. Trace gives flower exporters batch-level post-harvest traceability — cold chain monitoring, grower compliance, and export documentation all in one dashboard."},
+  meat:{ey:'Livestock Traceability',h1:'Animal identity from<br><em>pasture to plate.</em>',p:"Tag livestock at birth, log feed, vet visits, and movement records across your supply chain. Trace delivers the individual animal traceability that premium meat buyers and regulators now demand."}
+};
+function setInd(k,btn){
+  const d=IND[k];
+  document.getElementById('heyebrow').textContent=d.ey;
+  document.getElementById('hh1').innerHTML=d.h1;
+  document.getElementById('hhp').textContent=d.p.replace(/<[^>]+>/g,'');
+  document.querySelectorAll('.itab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+/* CHATBOT */
+const FL=[
+  {b:"Hello! 👋 I'm the Trace assistant. To set up your personalised demo, I just need a few quick details. What's your first name?",f:'fn',ph:'Your first name...'},
+  {b:d=>`Great to meet you, ${d.fn}! 🌾 What's your company name?`,f:'co',ph:'Company name...'},
+  {b:"And your business email so we can send you the demo confirmation?",f:'em',ph:'name@company.com...'},
+  {b:"Almost done — what's the best phone number to reach you on?",f:'ph',ph:'+91 98765 43210...'},
+  {b:d=>`Thank you, ${d.fn}! ✅ You're all set. Our team will reach out to ${d.em} within 24 hours to schedule your personalised Trace demo. We look forward to showing you what we've built!`,f:null}
+];
+let step=0,cdata={};
+const cm=document.getElementById('cm');
+function addM(t,txt){const w=document.createElement('div');w.className='cm '+t;const a=document.createElement('div');a.className='cmav';a.textContent=t==='bot'?'🐝':'👤';const b=document.createElement('div');b.className='bub';b.textContent=txt;w.appendChild(a);w.appendChild(b);cm.appendChild(w);cm.scrollTop=cm.scrollHeight}
+function showT(){const w=document.createElement('div');w.className='cm bot';w.id='ty';const a=document.createElement('div');a.className='cmav';a.textContent='🐝';const i=document.createElement('div');i.className='tind';i.innerHTML='<div class="td"></div><div class="td"></div><div class="td"></div>';w.appendChild(a);w.appendChild(i);cm.appendChild(w);cm.scrollTop=cm.scrollHeight}
+function rmT(){const t=document.getElementById('ty');if(t)t.remove()}
+function nxt(){if(step>=FL.length)return;const s=FL[step];showT();setTimeout(()=>{rmT();const m=typeof s.b==='function'?s.b(cdata):s.b;addM('bot',m);const inp=document.getElementById('ci');if(!s.f){inp.disabled=true;inp.placeholder='Demo booked ✓';document.querySelector('.sbtn').disabled=true;}else{inp.placeholder=s.ph;inp.focus();}},860)}
+function sm(){if(step>=FL.length)return;const s=FL[step];if(!s.f)return;const inp=document.getElementById('ci');const v=inp.value.trim();if(!v)return;addM('u',v);cdata[s.f]=v;inp.value='';step++;setTimeout(nxt,380)}
+function hk(e){if(e.key==='Enter')sm()}
+setTimeout(nxt,700);
+
+/* PROCESS TIMELINE */
+const STAGES=[
+  {n:'01',st:'Stage 1 — Intake',ti:'Discovery Call',de:'We schedule a focused 45-minute call to understand your supply chain, commodity type, and traceability goals. No slides — just an honest conversation about your operations and where Trace fits.',tg:['Needs Assessment','Supply Chain Mapping','Goal Setting']},
+  {n:'02',st:'Stage 2 — Design',ti:'Solution Design',de:'Our team builds a tailored module configuration for your vertical — selecting the right combination of Agronomy, Business, and Analytics modules, plus custom data fields specific to your commodity.',tg:['Module Selection','Custom Fields','Vertical Alignment']},
+  {n:'03',st:'Stage 3 — Setup',ti:'Data & Farm Onboarding',de:'We onboard your farmer database, geo-boundaries, and crop calendars. Field staff accounts are created and the mobile app is configured for your workflows, local language, and data collection needs.',tg:['Farmer Database','Geo-mapping','App Configuration']},
+  {n:'04',st:'Stage 4 — Pilot',ti:'Pilot & Training',de:'A selected group of farms goes live first. Field officers are trained in-person or remotely. We monitor data quality closely and iterate on workflows before rolling out to the full farm network.',tg:['Pilot Farms','Field Training','Workflow Iteration']},
+  {n:'05',st:'Stage 5 — Launch',ti:'Full Deployment',de:'All farms go live on the platform. Your management dashboard is activated, compliance reporting is configured, and you receive a dedicated success manager for the first 90 days post-launch.',tg:['Full Rollout','Dashboard Activation','Dedicated Support']},
+  {n:'06',st:'Stage 6 — Scale',ti:'Optimise & Grow',de:'With live data flowing, we unlock advanced analytics — yield forecasting, pest alerts, GAP compliance scores, and buyer-facing traceability certificates. Your operation now runs on intelligence.',tg:['Analytics','Yield Forecasting','Buyer Traceability']}
+];
+const tlc=document.getElementById('tln');
+STAGES.forEach((s,i)=>{
+  const n=document.createElement('div');n.className='tln';n.onclick=()=>pick(i);
+  n.innerHTML=`<div class="tlntop"><div class="tlnnum">${s.n}</div><div class="tlnlbl">${s.ti}</div></div><div class="tlndot"></div><div class="tlnbot"></div>`;
+  tlc.appendChild(n);
+});
+function pick(i){
+  document.querySelectorAll('.tln').forEach((n,j)=>n.classList.toggle('act',j===i));
+  document.getElementById('sf').style.width=(i/(STAGES.length-1)*100)+'%';
+  const s=STAGES[i];
+  document.getElementById('tlnum').textContent=s.n;
+  document.getElementById('tls').textContent=s.st;
+  document.getElementById('tlti').textContent=s.ti;
+  document.getElementById('tlde').textContent=s.de;
+  document.getElementById('tltg').innerHTML=s.tg.map(t=>`<span class="tltag">${t}</span>`).join('');
+}
+pick(0);
+let ti=0;
+const tt=setInterval(()=>{ti=(ti+1)%STAGES.length;pick(ti)},3600);
+tlc.addEventListener('click',()=>clearInterval(tt));
+
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
